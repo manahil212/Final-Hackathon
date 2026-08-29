@@ -1,0 +1,22 @@
+body{
+  font-family: "Andika", sans-sarif;
+}
+
+.modern-card{
+  /* background-color:rgb(255, 245, 224) !important; */
+  color: rgb(12, 18, 24);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 08);
+  border: 1px solid rgba(0, 0, 0, 0, 05);
+}
+
+.modern-card input:hover,
+.modern-card input:focus{
+  border-color: rgba(197, 145, 207, 0.048);
+  box-shadow: 0, 0, 10px rgba(188, 184, 221, 0.6);
+  outline: none;
+}
+
+/* .custom-nav{ */
+  /* background-color:lightskyblue; */
+/* } */
