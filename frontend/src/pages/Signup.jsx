@@ -12,7 +12,7 @@ function Signup() {
   const [email ,setEmail] = useState("")
    const [password,setPassword] = useState("")
     const [confirmPassword,setConfirmPassword] = useState("")
-
+const [role, setRole] = useState("customer")
     // SIGNUP BUTTON CLICK
   const handleSignup=async() => {
     console.log("Name:" , name)
@@ -22,7 +22,7 @@ function Signup() {
     
 try{
   // axios kai through backend pr data bhena
-  const response = await axios.post("http://localhost:5000/api/auth/signup",{
+  const response = await axios.post("http://localhost:5000/api/users/signup",{
     name:name,
     email:email,
     password:password
@@ -85,6 +85,19 @@ try{
          onChange={(e) => {setConfirmPassword(e.target.value)
          console.log("Signup data:", {name, email, password,confirmPassword})}} />
       </Form.Group>
+NEW CODE DROPDOWN OF
+      <Form.Group className="mb-3 text-start" controlId="formBasicRole">
+  <Form.Label>Select Role</Form.Label>
+  <Form.Select 
+    value={role} 
+    onChange={(e) => setRole(e.target.value)}
+  >
+    <option value="customer">Customer</option>
+    <option value="agent">Support Agent</option>
+  </Form.Select>
+</Form.Group>
+
+
       <Button variant="primary"
        type="button"
          onClick={handleSignup}>
