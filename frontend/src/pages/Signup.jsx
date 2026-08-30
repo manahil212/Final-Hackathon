@@ -22,7 +22,7 @@ const [role, setRole] = useState("customer")
     
 try{
   // axios kai through backend pr data bhena
-  const response = await axios.post("http://localhost:5000/api/users/signup",{
+  const response = await axios.post("https://final-hackathon-mnv5.onrender.com/api/users/signup",{
     name:name,
     email:email,
     password:password
