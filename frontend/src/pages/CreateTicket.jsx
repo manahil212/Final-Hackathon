@@ -16,7 +16,7 @@ const CreateTicket = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "http://localhost:5000/api/tickets/create",
+         "https://final-hackathon-mnv5.onrender.com/api/tickets/create",
         {
           title,
           description,
