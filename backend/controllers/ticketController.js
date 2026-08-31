@@ -100,25 +100,19 @@ export const createTicket = async (req, res) => {
 
 // ================= GET TICKETS =================
 
+
 export const getTickets = async (req, res) => {
   try {
-
-    const tickets = await Ticket.find({
-      user: req.user.userId,
-    }).sort({ createdAt: -1 });
-
+    const tickets = await Ticket.find({}).sort({ createdAt: -1 });
     res.status(200).json(tickets);
-
   } catch (error) {
     console.log("Get tickets error:", error);
-
     res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
-
 
 // ================= GET SINGLE TICKET =================
 

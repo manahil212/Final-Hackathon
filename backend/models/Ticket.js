@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 //  yeh file complains service request or bookings ka data save kerti hai or 5 start review
 const ticketSchema = new mongoose.Schema({
+  title :{
+    type :String,
+    required :true
+  },
   customer: { 
     type: String,  
-    required: true 
+    required: false
   },
   worker: { 
     type: mongoose.Schema.Types.ObjectId, 
@@ -11,7 +15,7 @@ const ticketSchema = new mongoose.Schema({
   },
   category: { 
     type: String, 
-    required: true 
+    required: false
   },
   description: { 
     type: String, 
