@@ -16,7 +16,7 @@ const TicketDetails = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-         "https://final-hackathon-mnv5.onrender.com/api/tickets/${id}",
+         `https://final-hackathon-1-9kyk.onrender.com/api/tickets/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -10,7 +10,7 @@ const CustomerDashboard = () => {
     const fetchCustomerTickets = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('"https://final-hackathon-mnv5.onrender.com/api/tickets"', {
+        const response = await axios.get(`https://final-hackathon-1-9kyk.onrender.com/api/tickets`, {
           headers: { Authorization: "Bearer ${token}" }
         });
         setTickets(response.data);
@@ -43,6 +43,11 @@ const CustomerDashboard = () => {
       {/* Tickets Table */}
       <Card className="shadow-sm p-3">
         <h4>My Support Tickets</h4>
+        <input
+        type='text'
+        className='form-control mb-3'
+        placeholder='Search tickets by title...'/>
+
         <Table striped bordered hover responsive className="mt-3">
           <thead>
             <tr>
@@ -52,7 +57,7 @@ const CustomerDashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {tickets.length > 0 ? (
+            {Array.isArray(tickets) && tickets.length > 0 ? (
               tickets.map((ticket) => (
                 <tr key={ticket._id}>
                   <td>{ticket.title}</td>
