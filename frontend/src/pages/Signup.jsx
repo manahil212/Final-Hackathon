@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from "axios"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, resolvePath } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 
@@ -25,7 +25,8 @@ try{
   const response = await axios.post(`https://final-hackathon-1-9kyk.onrender.com/api/users/signup`,{
     name:name,
     email:email,
-    password:password
+    password:password,
+    role: role
   })
   console.log("Server Response:" , response.data);
    toast.success("Signup successfull")
@@ -85,15 +86,15 @@ try{
          onChange={(e) => {setConfirmPassword(e.target.value)
          console.log("Signup data:", {name, email, password,confirmPassword})}} />
       </Form.Group>
-NEW CODE DROPDOWN OF
+        NEW CODE DROPDOWN OF
       <Form.Group className="mb-3 text-start" controlId="formBasicRole">
-  <Form.Label>Select Role</Form.Label>
+       <Form.Label>Select Role</Form.Label>
   <Form.Select 
     value={role} 
     onChange={(e) => setRole(e.target.value)}
   >
     <option value="customer">Customer</option>
-    <option value="agent">Support Agent</option>
+    <option value="agent"> Agent</option>
   </Form.Select>
 </Form.Group>
 
