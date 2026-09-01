@@ -44,7 +44,12 @@ export const createTicket = async (req, res) => {
 
 export const getTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.find({}).sort({ createdAt: -1 });
+    console.log("CHECK Request.USER:". req.user);
+    let query = {};
+    if (req.user && req.user.role && req.user.role.toLowerCase() === "customer") {
+      query ={user: req.user.Id}
+    }
+    const tickets = await Ticket.find(query).sort({ createdAt: -1 });
     res.status(200).json(tickets);
   } catch (error) {
     console.log("Get tickets error:", error);
