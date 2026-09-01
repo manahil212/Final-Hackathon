@@ -263,7 +263,7 @@ export const getTicketById = async (req, res) => {
 };
 
 // ======================== UPDATE TICKET ========================
-export const updateTicket = async (req, res) => {
+export const updateTicketStatus = async (req, res) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
 
@@ -271,7 +271,7 @@ export const updateTicket = async (req, res) => {
       return res.status(404).json({ success: false, message: "Ticket not found" });
     }
 
-    const updatedTicket = await Ticket.findByIdAndUpdate(
+    const updatedTicketStatus = await Ticket.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -284,6 +284,30 @@ export const updateTicket = async (req, res) => {
     });
   } catch (error) {
     console.log("Update ticket error:", error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// ======================= DELETE TICKET ========================
+export const deleteTicket = async (req, res) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+
+    if (!ticket) {
+      return res.status(404).json({ success: false, message: "Ticket not found" });
+    }
+
+    await Ticket.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      message: "Ticket deleted successfully",
+    });
+  } catch (error) {
+    console.log("Delete ticket error:", error);
     res.status(500).json({
       success: false,
       message: error.message,
