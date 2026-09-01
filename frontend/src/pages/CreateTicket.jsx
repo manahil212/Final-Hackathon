@@ -35,7 +35,7 @@ const CreateTicket = () => {
       console.log(res.data);
 
       // toastify
-      toast.success("Ticket created sussessfully!" ,{
+      toast.success("Ticket created successfully!" ,{
         position  :"top-right",
         autoclose : 3000
       })
