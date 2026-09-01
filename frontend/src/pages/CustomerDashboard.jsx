@@ -10,9 +10,9 @@ const CustomerDashboard = () => {
     const fetchCustomerTickets = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`https://final-hackathon-1-9kyk.onrender.com/api/tickets`, {
-          headers: { Authorization: "Bearer ${token}" }
-        });
+      const response = await axios.get("https://final-hackathon-1-9kyk.onrender.com/api/tickets", {
+          headers: { Authorization:`Bearer  +token` }
+      });
         setTickets(response.data);
       } catch (error) {
         console.error("Error fetching tickets:", error);

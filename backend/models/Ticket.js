@@ -5,12 +5,12 @@ const ticketSchema = new mongoose.Schema({
     type :String,
     required :true
   },
-// user :{
-//   type : mongoose.Schema.Types.ObjectId,
-//   ref : "User",
-//   required :true
+user :{
+  type : mongoose.Schema.Types.ObjectId,
+  ref : "User",
+  required :true
 
-// },
+},
   customer: { 
     type: String,  
     required: false
@@ -32,11 +32,11 @@ const ticketSchema = new mongoose.Schema({
     enum: ['low', 'medium', 'high'], 
     default: 'medium' 
   },
-  status: { 
-    type: String, 
-    enum: ['pending', 'accepted', 'rejected', 'in progress', 'completed'], 
-    default: 'pending' 
-  },
+  status: {
+  type: String,
+  enum: ['Open', 'In Progress', 'Resolved'],
+  default: 'Open'
+},
   rating: { 
     type: Number, 
     min: 1, 
