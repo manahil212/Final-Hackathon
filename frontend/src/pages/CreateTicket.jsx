@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Card, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify"; 
 
 const CreateTicket = () => {
   const [category, setCategory]  = useState("");
@@ -32,6 +33,12 @@ const CreateTicket = () => {
       );
 
       console.log(res.data);
+
+      // toastify
+      toast.success("Ticket created sussessfully!" ,{
+        position  :"top-right",
+        autoclose : 3000
+      })
 
       navigate("/customer-dashboard");
     } catch (error) {

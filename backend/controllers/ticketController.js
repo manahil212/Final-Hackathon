@@ -93,7 +93,7 @@ export const deleteTicket = async (req, res) => {
   try {
     const ticket = await Ticket.findOneAndDelete({
       _id: req.params.id,
-      user: req.user.userId,
+      // user: req.user.userId,
     });
 
     if (!ticket) {
@@ -106,6 +106,7 @@ export const deleteTicket = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Ticket deleted successfully",
+      ticket
     });
 
   } catch (error) {

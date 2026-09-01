@@ -1,68 +1,4 @@
 
-// // import User from "../models/userModel.js";
-// import User from "../models/User.js";
-// import bcrypt from "bcryptjs";
-// import jwt from "jsonwebtoken";
-
-// export const login = async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     // User check
-//     const user = await User.findOne({ email });
-
-//     if (!user) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "User not found",
-//       });
-//     }
-
-//     // Password check
-//     const isPasswordCorrect = await bcrypt.compare(
-//       password,
-//       user.password
-//     );
-
-//     if (!isPasswordCorrect) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Invalid password",
-//       });
-//     }
-
-//     // JWT token
-//     const token = jwt.sign(
-//       {
-//         userId: user._id,
-//         email: user.email,
-//       },
-//       process.env.JWT_SECRET,
-//       {
-//         expiresIn: "1d",
-//       }
-//     );
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Login successful",
-//       token,
-//       user: {
-//         id: user._id,
-//         name: user.name,
-//         email: user.email,
-//       },
-//     });
-//   } catch (error) {
-//     console.log("Login error:", error);
-
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
-
 
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
@@ -72,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 export const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     // Check user already exists
     const existingUser = await User.findOne({ email });
@@ -92,6 +28,7 @@ export const signup = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role: role || "customer",
     });
 
     await newUser.save();
@@ -103,6 +40,7 @@ export const signup = async (req, res) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
+        role: newUser.role,
       },
     });
 
@@ -122,17 +60,20 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+console.log("REQ.BODY =", req.body);
+console.log("EMAIL =", email);
+console.log("PASSWORD EXISTS =", !!password);
+    
 
-    // Find user
+    // Find user 
     const user = await User.findOne({ email });
+     if (!user) 
+      { return res.status(400).json(
+      { success: false,
+         message: "User not found", }); }
 
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: "User not found",
-      });
-    }
-
+  console.log("USER FOUND =", !!user);
+console.log("USER PASSWORD EXISTS =", !!user?.password);
     // Check password
     const isPasswordCorrect = await bcrypt.compare(
       password,
