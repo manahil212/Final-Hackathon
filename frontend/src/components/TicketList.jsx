@@ -68,25 +68,25 @@ const TicketList = () => {
   }
 
 // =========== DELETE HANDLER FUNCTION =============
-  const handleDelete = async (id) => {
-    if (window.confirm("Kya aap waqai is ticket ko delete karna chahti hain?")) {
-      try {
-        const token = localStorage.getItem("token");
+  // const handleDelete = async (id) => {
+  //   if (window.confirm("Kya aap waqai is ticket ko delete karna chahti hain?")) {
+  //     try {
+  //       const token = localStorage.getItem("token");
         
-        await axios.delete(`http://localhost:5000/api/ticketsdelete/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+  //       await axios.delete(`http://localhost:5000/api/ticketsdelete/${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       });
 
-        // UI ko foran update karne ke liye deleted ticket ko list se hata dein
-        setTickets(tickets.filter((ticket) => ticket._id !== id));
-      } catch (error) {
-        console.log("Delete error:", error);
-        alert("Failed to delete ticket");
-      }
-    }
-  };
+  //       // UI ko foran update karne ke liye deleted ticket ko list se hata dein
+  //       setTickets(tickets.filter((ticket) => ticket._id !== id));
+  //     } catch (error) {
+  //       console.log("Delete error:", error);
+  //       alert("Failed to delete ticket");
+  //     }
+  //   }
+  // };
 
   return (
     <div>
@@ -154,10 +154,10 @@ const TicketList = () => {
                         ).toLocaleDateString()
                       : "N/A"}
                   </small>
-<button onClick={handleDelete(ticket._id)}
+{/* <button onClick={handleDelete(ticket._id)}
 className="btn btn-danger btn-sm">
   Delete
-</button>
+</button> */}
                   <Button
   variant="primary"
   onClick={() => navigate(`/ticket/${ticket._id}`)}

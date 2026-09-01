@@ -40,25 +40,52 @@ export const createTicket = async (req, res) => {
 
 
 // ================= GET TICKETS =================
-
-
 export const getTickets = async (req, res) => {
   try {
-    console.log("CHECK Request.USER:". req.user);
-    let query = {};
-    if (req.user && req.user.role && req.user.role.toLowerCase() === "customer") {
-      query ={user: req.user.Id}
-    }
+    // console.log("CHECK Request.USER:", req.user);
+
+    // let query = {};
+
+    // if (
+    //   req.user &&
+    //   req.user.role &&
+    //   req.user.role.toLowerCase() === "customer"&&
+    //   req.user.userId
+    // )
+    //  {
+    //   query = { user: req.user.userId };
+    // }
+
     const tickets = await Ticket.find(query).sort({ createdAt: -1 });
+
     res.status(200).json(tickets);
   } catch (error) {
     console.log("Get tickets error:", error);
+
     res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
+
+// export const getTickets = async (req, res) => {
+//   try {
+//     console.log("CHECK Request.USER:", req.user);
+//     let query = {};
+//     if (req.user && req.user.role && req.user.role.toLowerCase() === "customer") {
+//       query ={user: req.user.Id}
+//     }
+//     const tickets = await Ticket.find(query).sort({ createdAt: -1 });
+//     res.status(200).json(tickets);
+//   } catch (error) {
+//     console.log("Get tickets error:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
 
 // ================= GET SINGLE TICKET =================
 

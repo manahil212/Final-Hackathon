@@ -1,5 +1,7 @@
 // yeh file complain aur tickets ka url ko handle kerti hai jb koi naya tickey banta hai ya status
 //  updatae hota hai tu is file kai throygh hoga
+// yeh file complain aur tickets ka url ko handle kerti hai jb koi naya tickey banta hai ya status
+//  updatae hota hai tu is file kai throygh hoga
 import express from "express";
 import { createTicket, getTickets, updateTicketStatus,deleteTicket } from "../controllers/ticketController.js";
 import {verifyToken} from "../middleware/authMiddleware.js"

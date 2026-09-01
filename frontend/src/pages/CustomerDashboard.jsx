@@ -63,7 +63,7 @@ const CustomerDashboard = () => {
                   <td>{ticket.title}</td>
                   <td>{ticket.description}</td>
                   <td>
-                    <span className={"badge bg-${ticket.status === 'Resolved' ? 'success' : 'warning'}"}>
+                    <span className={`badge bg-${ticket.status === 'Resolved' ? 'success' : 'warning'}`}>
                       {ticket.status || 'Pending'}
                     </span>
                   </td>
