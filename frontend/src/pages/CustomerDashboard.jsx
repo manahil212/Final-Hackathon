@@ -11,16 +11,47 @@ const CustomerDashboard = () => {
       try {
         const token = localStorage.getItem('token');
         console.log("my token:", token)
-      const response = await axios.get("https://final-hackathon-1-9kyk.onrender.com/api/tickets", {
-          headers: { Authorization:`Bearer  +token` }
+      const response = await axios.get("http://localhost:5000/api/tickets", {
+          headers: { Authorization:`Bearer ${token}` }
       });
-        setTickets(response.data);
+        setTickets(response.data.tickets || response.data);
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }
     };
     fetchCustomerTickets();
   }, []);
+
+ 
+
+const handleDelete = async (id) => {
+  if (window.confirm("Kya aap waqai is ticket ko delete karna chahti hain?")) {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.delete(
+        `http://localhost:5000/api/tickets/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        setTickets((prevTickets) =>
+          prevTickets.filter((ticket) => ticket._id !== id)
+        );
+
+        alert("Ticket deleted successfully!");
+      }
+    } catch (error) {
+      console.log("Delete error:", error);
+      alert(error.response?.data?.message || "Something went wrong");
+    }
+  }
+};
+
 
   return (
     <Container className="mt-4">
@@ -67,6 +98,12 @@ const CustomerDashboard = () => {
                     <span className={`badge bg-${ticket.status === 'Resolved' ? 'success' : 'warning'}`}>
                       {ticket.status || 'Pending'}
                     </span>
+                  </td>
+                  <td>
+                    <Button onClick={() => handleDelete(ticket.id ||ticket._id)}
+                      className='btn btn-danger btn-sm'>
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))

@@ -14,7 +14,7 @@ const AgentDashboard = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `https://final-hackathon-1-9kyk.onrender.com/api/tickets`,
+        `http://localhost:5000/api/tickets`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

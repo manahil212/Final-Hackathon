@@ -17,8 +17,9 @@ const CreateTicket = () => {
     try {
       const token = localStorage.getItem("token");
 
+  
       const res = await axios.post(
-         `https://final-hackathon-1-9kyk.onrender.com/api/tickets/create`,
+         "http://localhost:5000/api/tickets/create",
         {
           title,
           description,
@@ -100,5 +101,6 @@ const CreateTicket = () => {
 };
 
 export default CreateTicket;
+
 
 
