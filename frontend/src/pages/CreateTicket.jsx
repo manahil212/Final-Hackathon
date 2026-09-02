@@ -19,7 +19,7 @@ const CreateTicket = () => {
 
   
       const res = await axios.post(
-         "http://localhost:5000/api/tickets/create",
+         "https://final-hackathon-2.onrender.com/api/tickets/create",
         {
           title,
           description,

@@ -30,7 +30,7 @@ const handleDelete = async (id) => {
       const token = localStorage.getItem("token");
 
       const response = await axios.delete(
-        `http://localhost:5000/api/tickets/delete/${id}`,
+        `https://final-hackathon-2.onrender.com/api/tickets/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
