@@ -11,7 +11,7 @@ const CustomerDashboard = () => {
       try {
         const token = localStorage.getItem('token');
         console.log("my token:", token)
-      const response = await axios.get("http://localhost:5000/api/tickets", {
+      const response = await axios.get("https://final-hackathon-2.onrender.com/api/tickets", {
           headers: { Authorization:`Bearer ${token}` }
       });
         setTickets(response.data.tickets || response.data);
