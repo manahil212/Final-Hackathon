@@ -3,7 +3,7 @@ body{
 }
 
 .modern-card{
-  background-color:rgb(255, 245, 224) !important;
+  /* background-color:rgb(255, 245, 224) !important; */
   color: rgb(12, 18, 24);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 08);
